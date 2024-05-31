@@ -1,0 +1,37 @@
+name: Update submodules
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update_submodules:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get CMake
+        uses: lukka/get-cmake@latest
+
+      - name: update submodule
+        run: |
+          git submodule update --init --recursive -f
+          git submodule update --remote -f
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11.5
+        with:
+          vcpkgJsonGlob: vcpkg.json
+
+      - name: Run CMake
+        uses: lukka/run-cmake@v10.7
+        with:
+          configurePreset: build-release-msvc-ninja
+          buildPreset: release-msvc-ninja
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: "extern/CommonLibSSE-NG"
+          commit_message: "build: :arrow_up_small: update commonlibsse-ng submodule"

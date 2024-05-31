@@ -1,0 +1,38 @@
+name: Build and create artifact
+
+on:
+  pull_request:
+    branches: main
+  push:
+    branches: main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Get CMake
+        uses: lukka/get-cmake@latest
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11.5
+        with:
+          vcpkgGitCommitId: ${{ env.VCPKG_COMMIT_ID }}
+          vcpkgJsonGlob: vcpkg.json
+
+      - name: Run CMake
+        uses: lukka/run-cmake@v10.7
+        with:
+          configurePreset: build-release-msvc-ninja
+          buildPreset: release-msvc-ninja
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: dist/*.7z
