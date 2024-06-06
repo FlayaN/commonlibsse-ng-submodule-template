@@ -43,5 +43,3 @@ namespace stl
 		return { a_view.data(), a_view.size() };
 	}
 }
-
-#include "Plugin.h"

@@ -11,9 +11,7 @@
       "hidden": true,
       "cacheVariables": {
         "CMAKE_CXX_FLAGS": "$env{PROJECT_PLATFORM_FLAGS} $env{PROJECT_TEXT_FLAGS} $env{PROJECT_COMPILER_FLAGS} $penv{CXXFLAGS}",
-        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
-        "SKSE_SUPPORT_XBYAK": "ON",
-        "BUILD_TESTS": "OFF"
+        "SKSE_SUPPORT_XBYAK": "ON"
       },
       "binaryDir": "${sourceDir}/build"
     },
@@ -40,7 +38,7 @@
       "hidden": true,
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-        "CMAKE_CXX_FLAGS_RELEASE": "/fp:fast /GR- /Gw /O2 /Ob3 /Qpar",
+        "CMAKE_CXX_FLAGS_RELEASE": "/fp:fast /GR- /Gw /O2 /Ob2 /Qpar",
         "CMAKE_SHARED_LINKER_FLAGS_RELEASE": "/CGTHREADS:8 /OPT:ICF=4"
       }
     },
@@ -63,6 +61,9 @@
     {
       "name": "compiler-msvc",
       "hidden": true,
+      "cacheVariables": {
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
+      },
       "environment": {
         "PROJECT_COMPILER_FLAGS": "/cgthreads8 /diagnostics:caret /EHsc /fp:contract /fp:except- /guard:cf- /MP /permissive- /W4 /Zc:__cplusplus /Zc:enumTypes /Zc:lambda /Zc:preprocessor /Zc:referenceBinding /Zc:rvalueCast /Zc:templateScope /Zc:ternary /external:anglebrackets /external:W0"
       },
