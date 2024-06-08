@@ -81,7 +81,7 @@ function(add_simple_commonlibsse_ng_plugin)
 
   set(SRC_FOLDER "src")
   if(DEFINED ADD_SIMPLE_COMMONLIBSSE_NG_PLUGIN_SRC_FOLDER)
-      set(SRC_FOLDER "${ADD_SIMPLE_COMMONLIBSSE_NG_PLUGIN_SRC_FOLDER}")
+    set(SRC_FOLDER "${ADD_SIMPLE_COMMONLIBSSE_NG_PLUGIN_SRC_FOLDER}")
   endif()
 
   _add_cxx_files("${SRC_FOLDER}")
@@ -103,6 +103,11 @@ function(add_simple_commonlibsse_ng_plugin)
                  PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/cmake/version.rc)
 
   target_precompile_headers("${PROJECT_NAME}" PRIVATE include/PCH.h)
+
+  target_include_directories(
+    ${PROJECT_NAME}
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/${SRC_FOLDER})
 
   set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ON)
   set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_DEBUG OFF)
@@ -205,7 +210,7 @@ function(_msvc_specific_init)
   target_compile_options(
     "${PROJECT_NAME}"
     PRIVATE /MP
-            /W4
+            /W3
             /WX
             /permissive-
             /Zc:alignedNew
