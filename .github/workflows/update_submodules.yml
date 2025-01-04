@@ -27,8 +27,7 @@ jobs:
       - name: Run CMake
         uses: lukka/run-cmake@v10.7
         with:
-          configurePreset: build-release-msvc-ninja
-          buildPreset: release-msvc-ninja
+          workflowPreset: release-msvc
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4

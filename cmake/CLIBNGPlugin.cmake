@@ -1,6 +1,6 @@
 include(FetchContent)
 
-set(CLIBNG_PLUGIN_VERSION 1.0.0)
+set(CLIBNG_PLUGIN_VERSION 1.1.0)
 FetchContent_Declare(
   CLIBNGPlugin
   URL https://github.com/FlayaN/CommonLibSSE-NG-cmake/archive/refs/tags/${CLIBNG_PLUGIN_VERSION}.tar.gz

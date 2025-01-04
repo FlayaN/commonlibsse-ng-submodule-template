@@ -22,14 +22,12 @@ jobs:
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11.5
         with:
-          vcpkgGitCommitId: ${{ env.VCPKG_COMMIT_ID }}
           vcpkgJsonGlob: vcpkg.json
 
       - name: Run CMake
         uses: lukka/run-cmake@v10.7
         with:
-          configurePreset: build-release-msvc-ninja
-          buildPreset: release-msvc-ninja
+          workflowPreset: release-msvc
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3

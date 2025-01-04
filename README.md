@@ -33,8 +33,8 @@ https://github.com/FlayaN/commonlibsse-ng-submodule-template/blob/main/CMakeList
 ```
 # to update submodules in /extern
 git submodule update --init --recursive
-# configure cmake
-cmake --preset build-release-msvc-msvc
-# build dll
-cmake --build build --preset release-msvc-msvc
+# configure cmake and build dll
+cmake --workflow --preset release-msvc
+# only build dll
+cmake --build --preset release-msvc
 ```
